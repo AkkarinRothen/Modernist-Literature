@@ -11,6 +11,7 @@
   "dependencies": {
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
+    "scheduler": "^0.26.0",
     "@google/genai": "^1.16.0",
     "reactflow": "^11.11.4"
   },
