@@ -1,11 +1,7 @@
 import React, { useMemo } from 'react';
-// FIX: The original combined import for reactflow was causing module resolution errors.
-// By separating the default component import, named component imports, and type-only imports,
-// we can ensure that TypeScript resolves each correctly.
-// FIX: Imported `MarkerType` enum to fix type error with edge marker definitions.
 import ReactFlow, { Background, Controls, MarkerType } from 'reactflow';
 import type { Edge, Node } from 'reactflow';
-import type { ModernistInfo } from '../types.js';
+import type { ModernistInfo } from '../types.ts';
 
 interface CharacterRelationshipDiagramProps {
   relationships: ModernistInfo['characterRelationships'];
@@ -47,7 +43,6 @@ const CharacterRelationshipDiagram: React.FC<CharacterRelationshipDiagramProps> 
       animated: true,
       type: 'smoothstep',
       markerEnd: {
-        // FIX: The value 'arrowclosed' is not a valid MarkerType. It has been replaced with the correct enum value `MarkerType.ArrowClosed`.
         type: MarkerType.ArrowClosed,
         width: 15,
         height: 15,
@@ -68,6 +63,7 @@ const CharacterRelationshipDiagram: React.FC<CharacterRelationshipDiagramProps> 
       edges={edges}
       fitView
       nodesConnectable={false}
+      aria-label="Interactive diagram showing relationships between characters"
     >
       <Background color="#e5e5e5" gap={16} />
       <Controls />

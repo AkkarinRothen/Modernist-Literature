@@ -1,5 +1,5 @@
 import React from 'react';
-import type { ComparativeAnalysis } from '../types.js';
+import type { ComparativeAnalysis } from '../types.ts';
 
 interface ComparisonDisplayProps {
   data: ComparativeAnalysis;
@@ -29,7 +29,7 @@ const ComparisonDisplay: React.FC<ComparisonDisplayProps> = ({ data }) => {
             <div key={index} className="bg-green-50/70 border border-green-200 p-6 rounded-lg">
               <div className="flex items-start">
                  <div className="flex-shrink-0 h-8 w-8 bg-green-800 text-white flex items-center justify-center rounded-full font-bold mr-4">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                       <path fillRule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clipRule="evenodd" />
                     </svg>
                  </div>
@@ -50,7 +50,7 @@ const ComparisonDisplay: React.FC<ComparisonDisplayProps> = ({ data }) => {
             <div key={index} className="bg-red-50/60 border border-red-200 p-6 rounded-lg">
               <div className="flex items-start">
                  <div className="flex-shrink-0 h-8 w-8 bg-red-800 text-white flex items-center justify-center rounded-full font-bold mr-4">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                         <path fillRule="evenodd" d="M4 10a.75.75 0 01.75-.75h10.5a.75.75 0 010 1.5H4.75A.75.75 0 014 10z" clipRule="evenodd" />
                     </svg>
                  </div>

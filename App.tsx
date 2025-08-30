@@ -1,8 +1,8 @@
 import React, { useState, useCallback, useEffect } from 'react';
-import Sidebar from './components/Sidebar.jsx';
-import ContentDisplay from './components/ContentDisplay.jsx';
-import { fetchModernistInfo, fetchComparativeAnalysis } from './services/geminiService.js';
-import type { ModernistInfo, ComparativeAnalysis } from './types.js';
+import Sidebar from './components/Sidebar.tsx';
+import ContentDisplay from './components/ContentDisplay.tsx';
+import { fetchModernistInfo, fetchComparativeAnalysis } from './services/geminiService.ts';
+import type { ModernistInfo, ComparativeAnalysis } from './types.ts';
 
 const App: React.FC = () => {
   const [selectedTopic, setSelectedTopic] = useState<string | null>(null);
@@ -83,17 +83,28 @@ const App: React.FC = () => {
           const [topic1, topic2] = comparisonTopics;
           const result = await fetchComparativeAnalysis(topic1, topic2);
           setComparisonContent(result);
+          // On success, reset comparison state
+          setIsComparing(false);
+          setComparisonTopics([]);
         } catch (err) {
           setError(err instanceof Error ? err.message : "An unknown error occurred.");
         } finally {
           setIsLoading(false);
-          setIsComparing(false);
-          setComparisonTopics([]);
         }
       }
     };
     runComparison();
   }, [comparisonTopics, isComparing]);
+
+  const handleRetry = () => {
+    setError(null);
+    if (isComparing && comparisonTopics.length === 2) {
+      // Create a new array reference to re-trigger the useEffect for comparison
+      setComparisonTopics(currentTopics => [...currentTopics]);
+    } else if (selectedTopic) {
+      handleSelectTopic(selectedTopic);
+    }
+  };
 
 
   return (
@@ -112,14 +123,20 @@ const App: React.FC = () => {
       <div className="flex-1 flex flex-col min-w-0">
         <header className="lg:hidden flex items-center justify-between p-4 sm:p-6 border-b border-neutral-200 bg-[#fdfdfc]/80 backdrop-blur-sm sticky top-0 z-10">
           <h1 className="text-xl font-bold text-neutral-800 tracking-tight">Modernist Explorer</h1>
-          <button onClick={() => setIsSidebarOpen(true)} className="p-2 -mr-2 text-neutral-600 hover:text-neutral-900" aria-label="Open menu">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <button 
+            onClick={() => setIsSidebarOpen(true)} 
+            className="p-2 -mr-2 text-neutral-600 hover:text-neutral-900" 
+            aria-label="Open menu"
+            aria-controls="main-sidebar"
+            aria-expanded={isSidebarOpen}
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
             </svg>
           </button>
         </header>
 
-        <main className="flex-1 p-4 sm:p-8 lg:p-12 overflow-y-auto">
+        <main id="main-content" className="flex-1 p-4 sm:p-8 lg:p-12 overflow-y-auto" aria-live="polite" aria-busy={isLoading}>
           <ContentDisplay 
             content={content} 
             comparisonContent={comparisonContent}
@@ -129,6 +146,7 @@ const App: React.FC = () => {
             onSelectTopic={handleSelectTopic}
             isComparing={isComparing}
             comparisonTopics={comparisonTopics}
+            onRetry={handleRetry}
           />
         </main>
       </div>

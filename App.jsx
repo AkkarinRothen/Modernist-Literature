@@ -83,17 +83,28 @@ const App: React.FC = () => {
           const [topic1, topic2] = comparisonTopics;
           const result = await fetchComparativeAnalysis(topic1, topic2);
           setComparisonContent(result);
+          // On success, reset comparison state
+          setIsComparing(false);
+          setComparisonTopics([]);
         } catch (err) {
           setError(err instanceof Error ? err.message : "An unknown error occurred.");
         } finally {
           setIsLoading(false);
-          setIsComparing(false);
-          setComparisonTopics([]);
         }
       }
     };
     runComparison();
   }, [comparisonTopics, isComparing]);
+
+  const handleRetry = () => {
+    setError(null);
+    if (isComparing && comparisonTopics.length === 2) {
+      // Create a new array reference to re-trigger the useEffect for comparison
+      setComparisonTopics(currentTopics => [...currentTopics]);
+    } else if (selectedTopic) {
+      handleSelectTopic(selectedTopic);
+    }
+  };
 
 
   return (
@@ -135,6 +146,7 @@ const App: React.FC = () => {
             onSelectTopic={handleSelectTopic}
             isComparing={isComparing}
             comparisonTopics={comparisonTopics}
+            onRetry={handleRetry}
           />
         </main>
       </div>
