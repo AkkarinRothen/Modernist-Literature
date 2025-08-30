@@ -1,0 +1,5 @@
+{
+  "name": "Modernist Literature Explorer",
+  "description": "An interactive web application that uses AI to generate concise analyses of key themes, authors, and concepts within Modernist literature.",
+  "requestFramePermissions": []
+}
