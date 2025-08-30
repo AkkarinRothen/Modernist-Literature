@@ -1,8 +1,9 @@
+
 import React, { useState, useCallback, useEffect } from 'react';
-import Sidebar from './components/Sidebar';
-import ContentDisplay from './components/ContentDisplay';
-import { fetchModernistInfo, fetchComparativeAnalysis } from './services/geminiService';
-import type { ModernistInfo, ComparativeAnalysis } from './types';
+import Sidebar from './components/Sidebar.tsx';
+import ContentDisplay from './components/ContentDisplay.tsx';
+import { fetchModernistInfo, fetchComparativeAnalysis } from './services/geminiService.ts';
+import type { ModernistInfo, ComparativeAnalysis } from './types.ts';
 
 const App: React.FC = () => {
   const [selectedTopic, setSelectedTopic] = useState<string | null>(null);

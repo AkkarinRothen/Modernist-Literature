@@ -1,8 +1,9 @@
+
 import React, { useState, useEffect } from 'react';
-import type { ModernistInfo, AuthorDetails, ComparativeAnalysis } from '../types';
-import { fetchAuthorBiography } from '../services/geminiService';
-import CharacterRelationshipDiagram from './CharacterRelationshipDiagram';
-import ComparisonDisplay from './ComparisonDisplay';
+import type { ModernistInfo, AuthorDetails, ComparativeAnalysis } from '../types.ts';
+import { fetchAuthorBiography } from '../services/geminiService.ts';
+import CharacterRelationshipDiagram from './CharacterRelationshipDiagram.tsx';
+import ComparisonDisplay from './ComparisonDisplay.tsx';
 
 interface ContentDisplayProps {
   content: ModernistInfo | null;

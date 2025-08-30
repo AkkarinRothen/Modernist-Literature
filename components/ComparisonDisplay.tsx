@@ -1,5 +1,6 @@
+
 import React from 'react';
-import type { ComparativeAnalysis } from '../types';
+import type { ComparativeAnalysis } from '../types.ts';
 
 interface ComparisonDisplayProps {
   data: ComparativeAnalysis;

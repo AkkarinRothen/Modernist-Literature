@@ -1,5 +1,6 @@
+
 import { GoogleGenAI, Type } from "@google/genai";
-import type { ModernistInfo, AuthorDetails, ComparativeAnalysis } from '../types';
+import type { ModernistInfo, AuthorDetails, ComparativeAnalysis } from '../types.ts';
 
 if (!process.env.API_KEY) {
     throw new Error("API_KEY environment variable not set");
