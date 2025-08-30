@@ -1,6 +1,5 @@
-
 import React from 'react';
-import type { ComparativeAnalysis } from '../types.ts';
+import type { ComparativeAnalysis } from '../types.js';
 
 interface ComparisonDisplayProps {
   data: ComparativeAnalysis;
@@ -12,19 +11,19 @@ const ComparisonDisplay: React.FC<ComparisonDisplayProps> = ({ data }) => {
   return (
     <div className="max-w-4xl mx-auto animate-fade-in space-y-12">
       <header className="pb-4 border-b border-neutral-200 text-center">
-        <p className="text-lg text-neutral-500 mb-1">Comparative Analysis</p>
-        <h2 className="text-5xl font-bold text-neutral-900 tracking-tighter">
+        <p className="text-base sm:text-lg text-neutral-500 mb-1">Comparative Analysis</p>
+        <h2 className="text-3xl sm:text-5xl font-bold text-neutral-900 tracking-tighter">
           {topics[0]} <span className="text-neutral-400 font-light">&</span> {topics[1]}
         </h2>
       </header>
 
       <section>
-        <h3 className="text-3xl font-semibold text-neutral-800 mb-4">Introduction</h3>
-        <p className="text-lg text-neutral-600 leading-relaxed whitespace-pre-wrap">{introduction}</p>
+        <h3 className="text-2xl sm:text-3xl font-semibold text-neutral-800 mb-4">Introduction</h3>
+        <p className="text-base sm:text-lg text-neutral-600 leading-relaxed whitespace-pre-wrap">{introduction}</p>
       </section>
 
       <section>
-        <h3 className="text-3xl font-semibold text-neutral-800 mb-6">Key Similarities</h3>
+        <h3 className="text-2xl sm:text-3xl font-semibold text-neutral-800 mb-6">Key Similarities</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {similarities.map((item, index) => (
             <div key={index} className="bg-green-50/70 border border-green-200 p-6 rounded-lg">
@@ -45,7 +44,7 @@ const ComparisonDisplay: React.FC<ComparisonDisplayProps> = ({ data }) => {
       </section>
 
        <section>
-        <h3 className="text-3xl font-semibold text-neutral-800 mb-6">Key Differences</h3>
+        <h3 className="text-2xl sm:text-3xl font-semibold text-neutral-800 mb-6">Key Differences</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {differences.map((item, index) => (
             <div key={index} className="bg-red-50/60 border border-red-200 p-6 rounded-lg">
@@ -66,8 +65,8 @@ const ComparisonDisplay: React.FC<ComparisonDisplayProps> = ({ data }) => {
       </section>
 
       <section>
-        <h3 className="text-3xl font-semibold text-neutral-800 mb-4">Conclusion</h3>
-        <p className="text-lg text-neutral-600 leading-relaxed whitespace-pre-wrap bg-neutral-50/80 border border-neutral-200 p-6 rounded-lg">{conclusion}</p>
+        <h3 className="text-2xl sm:text-3xl font-semibold text-neutral-800 mb-4">Conclusion</h3>
+        <p className="text-base sm:text-lg text-neutral-600 leading-relaxed whitespace-pre-wrap bg-neutral-50/80 border border-neutral-200 p-6 rounded-lg">{conclusion}</p>
       </section>
     </div>
   );

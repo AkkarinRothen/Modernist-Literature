@@ -1,4 +1,3 @@
-
 import React, { useMemo } from 'react';
 // FIX: The original combined import for reactflow was causing module resolution errors.
 // By separating the default component import, named component imports, and type-only imports,
@@ -6,7 +5,7 @@ import React, { useMemo } from 'react';
 // FIX: Imported `MarkerType` enum to fix type error with edge marker definitions.
 import ReactFlow, { Background, Controls, MarkerType } from 'reactflow';
 import type { Edge, Node } from 'reactflow';
-import type { ModernistInfo } from '../types.ts';
+import type { ModernistInfo } from '../types.js';
 
 interface CharacterRelationshipDiagramProps {
   relationships: ModernistInfo['characterRelationships'];

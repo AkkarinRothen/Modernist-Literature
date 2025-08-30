@@ -1,4 +1,8 @@
-
+/** 
+ * @file This file defines the TypeScript types for the application. 
+ * It is intentionally left with a .js extension to ensure it is served with the correct MIME type by static hosts.
+ * Babel will correctly strip the type annotations during in-browser transpilation.
+ */
 
 export interface ModernistInfo {
   topic: string;
